@@ -109,3 +109,74 @@ document.addEventListener("click", function (event) {
     setTimeout(() => sparkle.remove(), 850);
   }
 });
+```javascript
+// 🦢 KHU VƯỜN THIÊN NGA CỔ TÍCH 🎀
+(function () {
+  const style = document.createElement("style");
+
+  style.textContent = `
+    .swan-decoration {
+      position: fixed;
+      z-index: 10;
+      pointer-events: none;
+      user-select: none;
+      font-size: 30px;
+      filter: drop-shadow(0 0 7px #ffc4e1);
+      animation: swanFloat 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes swanFloat {
+      from {
+        transform: translateY(0) rotate(-8deg);
+      }
+      to {
+        transform: translateY(-18px) rotate(8deg);
+      }
+    }
+
+    .swan-decoration .swan-bow {
+      position: absolute;
+      top: -7px;
+      right: -4px;
+      font-size: 13px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swan-decoration {
+        animation: none;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  const positions = [
+    { top: "15%", left: "3%" },
+    { top: "30%", right: "4%" },
+    { top: "55%", left: "2%" },
+    { top: "72%", right: "3%" },
+    { top: "88%", left: "12%" },
+    { top: "20%", right: "15%" },
+    { top: "65%", right: "12%" },
+    { top: "42%", left: "8%" }
+  ];
+
+  positions.forEach((position, index) => {
+    const swan = document.createElement("span");
+
+    swan.className = "swan-decoration";
+    swan.textContent = "🦢";
+
+    const bow = document.createElement("span");
+    bow.className = "swan-bow";
+    bow.textContent = "🎀";
+    swan.appendChild(bow);
+
+    Object.assign(swan.style, position);
+    swan.style.animationDelay = `${index * 0.35}s`;
+    swan.style.opacity = "0.8";
+
+    document.body.appendChild(swan);
+  });
+})();
+```
