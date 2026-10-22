@@ -71,3 +71,41 @@ if (!reduceMotion) {
     sparkleLayer.appendChild(star);
   }
 }
+// ✨ Bling bling khi nhấn chuột
+document.addEventListener("click", function (event) {
+  const symbols = ["✦", "✧", "✨", "♡", "⋆", "💗"];
+  const amount = 9;
+
+  for (let i = 0; i < amount; i++) {
+    const sparkle = document.createElement("span");
+
+    sparkle.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    sparkle.style.position = "fixed";
+    sparkle.style.left = event.clientX + "px";
+    sparkle.style.top = event.clientY + "px";
+    sparkle.style.pointerEvents = "none";
+    sparkle.style.zIndex = "99999";
+    sparkle.style.color = "#f3a6c8";
+    sparkle.style.fontSize = 12 + Math.random() * 15 + "px";
+    sparkle.style.transform = "translate(-50%, -50%)";
+    sparkle.style.transition =
+      "transform 800ms ease-out, opacity 800ms ease-out";
+
+    document.body.appendChild(sparkle);
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 35 + Math.random() * 65;
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    requestAnimationFrame(() => {
+      sparkle.style.transform =
+        `translate(${x}px, ${y}px) rotate(${Math.random() * 180}deg)`;
+      sparkle.style.opacity = "0";
+    });
+
+    setTimeout(() => sparkle.remove(), 850);
+  }
+});
